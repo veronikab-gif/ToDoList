@@ -4,19 +4,53 @@
     <meta charset="UTF-8">
     <title>Nový úkol</title>
 
-    <link rel="stylesheet" href="style/stylesheet.css">
+    <link rel="stylesheet" href="../style/stylesheet.css">
 </head>
 <body>
 
     <header>
-        <h1>Nový úkol</h1>
+        <h1>Úkolníček</h1>
         <nav>
-            <a href="dashboard.html">Přehled</a>
+            <a href="../index.html">Přehled</a>
             <a href="new.html">Nový úkol</a>
             <a href="list.html">Seznam úkolů</a>
         </nav>
     </header>
+    <form id="taskForm">   
+        <h2>Nový úkol</h2>
+        <div class="name">
+            <h3>Název</h3>
+        </div>
+        <div class="description">
+            <h3>Popis</h3>
+        </div>
+        <div class="priority">
+            <button class="priority-high" type="button">Vysoká</button>
+            <button class="priority-medium" type="button">Střední</button>
+            <button class="priority-low" type="button">Nízká</button>
+        </div>
+        <div class="tags">
+            <h3>Tagy</h3>
+            <button class="cleaning" type="button">Úklid</button>
+            <button class="shopping" type="button">Nákupy</button>
+            <button class="maintenance" type="button">Opravy</button>
+        </div>
+        <div class="custom-tag">
+            <h3>Vlastní tag</h3>
+            <input type="text" id="customTagInput" name="customTagInput" placeholder="Zadejte vlastní tag">
+            <button type="button" id="addCustomTag">Přidat tag</button>
+        </div>
+        <button type="submit">Vytvořit úkol</button>
 
+
+
+    </form>
+
+
+    
+
+
+    <script src="../components/taskForm.js"></script>
     <main id="app"></main>
     
 </body>
