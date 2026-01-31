@@ -4,54 +4,57 @@
     <meta charset="UTF-8">
     <title>Nový úkol</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../style/stylesheet.css">
 </head>
 <body>
 
     <header>
         <h1>Úkolníček</h1>
-        <nav>
-            <a href="../index.html">Přehled</a>
-            <a href="new.html">Nový úkol</a>
-            <a href="list.html">Seznam úkolů</a>
-        </nav>
     </header>
-    <form id="taskForm">   
-        <h2>Nový úkol</h2>
-        <div class="name">
-            <h3>Název</h3>
-        </div>
-        <div class="description">
-            <h3>Popis</h3>
-        </div>
-        <div class="priority">
-            <button class="priority-high" type="button">Vysoká</button>
-            <button class="priority-medium" type="button">Střední</button>
-            <button class="priority-low" type="button">Nízká</button>
-        </div>
-        <div class="tags">
-            <h3>Tagy</h3>
-            <button class="cleaning" type="button">Úklid</button>
-            <button class="shopping" type="button">Nákupy</button>
-            <button class="maintenance" type="button">Opravy</button>
-        </div>
-        <div class="custom-tag">
-            <h3>Vlastní tag</h3>
-            <input type="text" id="customTagInput" name="customTagInput" placeholder="Zadejte vlastní tag">
-            <button type="button" id="addCustomTag">Přidat tag</button>
-        </div>
-        <button type="submit">Vytvořit úkol</button>
 
-
-
-    </form>
-
-
+    <div class="layout">
+        <div class="sidebar">
+            <nav>
+                <a href="../index.html">Přehled</a>
+                <a href="new.html">Nový úkol</a>
+                <a href="list.html">Seznam úkolů</a>
+            </nav>
+        </div>
+        <div class="task-form">
+            <h2>Nový úkol</h2>
+            <form id="taskForm">   
+                <div class="name">
+                    <h3>Název</h3>
+                    <input type="text" id="title" required placeholder="Zadejte název úkolu">
+                </div>
+                <div class="description">
+                    <h3>Popis</h3>
+                    <textarea id="description" placeholder="Zadejte popis úkolu"></textarea>
+                </div>
+                <div class="priority">
+                    <h3>Priorita</h3>
+                    <button class="priority-high" type="button">Vysoká</button>
+                    <button class="priority-medium" type="button">Střední</button>
+                    <button class="priority-low" type="button">Nízká</button>
+                </div>
+                <div class="tags">
+                    <h3>Tagy</h3>
+                    <button class="cleaning" type="button">Úklid</button>
+                    <button class="shopping" type="button">Nákupy</button>
+                    <button class="maintenance" type="button">Opravy</button>
+                </div>
+                <div class="custom-tag">
+                    <h3>Vlastní tag</h3>
+                    <input type="text" id="customTagInput" name="customTagInput" placeholder="Zadejte vlastní tag">
+                    <button type="button" id="addCustomTag">Přidat tag</button>
+                </div>
+                <button type="submit">Vytvořit úkol</button>
+            </form>
+        </div>
+    </div>
     
-
-
-    <script src="../components/taskForm.js"></script>
-    <main id="app"></main>
-    
+    <script type="module" src="../components/taskForm.js"></script>
+  
 </body>
 </html>
