@@ -46,8 +46,11 @@
                 </div>
                 <div class="custom-tag">
                     <h3>Vlastní tag</h3>
-                    <input type="text" id="customTagInput" name="customTagInput" placeholder="Zadejte vlastní tag">
-                    <button type="button" id="addCustomTag">Přidat tag</button>
+                    <div class="custom-tag-controls">
+                        <input type="text" id="customTagInput" name="customTagInput" placeholder="Zadejte vlastní tag">
+                        <input type="color" id="customTagColor" name="customTagColor" value="#128fe2" aria-label="Barva tagu">
+                        <button type="button" id="addCustomTag">Přidat tag</button>
+                    </div>
                 </div>
                 <button type="submit">Vytvořit úkol</button>
             </form>
