@@ -1,13 +1,13 @@
 export class Task {
-    constructor(id, title, description, priority, tags = [], status = "NOVÝ") {
+    constructor(id, title, description, priority, tags = [], status = "NOVÝ", reviewerNotes = [], createdAt = null, updatedAt = null) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.status = status;
-        this.reviewerNotes = []; // Historie poznámek s timestamp
+        this.reviewerNotes = reviewerNotes; // Historie poznámek s timestamp
         this.priority = priority;
-        this.createdAt = new Date();
-        this.updatedAt = new Date();
+        this.createdAt = createdAt ? new Date(createdAt) : new Date(); //fix timestampů
+        this.updatedAt = updatedAt ? new Date(updatedAt) : new Date(); //fix timestampů
         this.tags = tags;
     }
 

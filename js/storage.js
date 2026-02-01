@@ -13,17 +13,24 @@ export class Storage {
         if (!data) return [];
         try {
             const jsonTask = JSON.parse(data); //převede zpět do js
-            return jsonTask.map (t => new Task(
-                t.id,
-                t.title,   
-                t.description,
-                t.priority,
-                t.tags,
-                t.status,
-                t.reviewerNote,
-                new Date(t.createdAt),
-                new Date(t.updatedAt)
-            ));
+            return jsonTask.map (t => {
+                const task = new Task(
+                    t.id,
+                    t.title,   
+                    t.description,
+                    t.priority,
+                    t.tags,
+                    t.status
+                );
+                // fix timestampů
+                if (t.createdAt) task.createdAt = new Date(t.createdAt);
+                if (t.updatedAt) task.updatedAt = new Date(t.updatedAt);
+                
+                if (t.reviewerNotes && Array.isArray(t.reviewerNotes)) {
+                    task.reviewerNotes = t.reviewerNotes;
+                }
+                return task;
+            });
         }
         catch (error) {
             console.error("Chyba při načítání dat", error);
