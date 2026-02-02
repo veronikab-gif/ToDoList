@@ -1,4 +1,3 @@
-import { Roles } from "../js/roles.js";
 import { getCurrentRole, setCurrentRole } from "../js/session.js";
 
 const select = document.getElementById("roleSelect");

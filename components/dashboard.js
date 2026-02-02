@@ -37,13 +37,16 @@ function renderPriorityPie() {
     });
 }
 
+function labelize(text) {
+return text.charAt(0) + text.slice(1).toLowerCase();
+}
 function renderStatusPie() {
     const data = {
         "NOVÝ": 0,
         "REVIZE": 0,
         "ARCHIVOVANÝ": 0
     };
-
+   
     tasks.forEach(task => {
         if (data[task.status] !== undefined) {
             data[task.status]++;
@@ -53,17 +56,17 @@ function renderStatusPie() {
     new Chart(document.getElementById("statusPie"), {
         type: "pie",
         data: {
-            labels: Object.keys(data),
+            labels: Object.keys(data).map(labelize),
             datasets: [{
                 data: Object.values(data),
-                backgroundColor: ["#4ecdc4", "#45b7d1", "#96ceb4"],
+                backgroundColor: ["#4E79A7", "#F28E2B", "#6B8E6E"],
                 borderColor: "#ffffff",
                 borderWidth: 2
             }]
         },
         options: {
             responsive: false,
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
         }
     });
 }

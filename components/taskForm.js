@@ -6,8 +6,12 @@ const form = document.getElementById("taskForm");
 const titleInput = document.getElementById("title");
 const descriptionInput = document.getElementById("description");
 const priorityButtons = document.querySelectorAll(".priority button");
+const selectedTags = new Set();
+const tagsContainer = document.querySelector(".tags");
+const tagButtons = document.querySelectorAll(".tags button");
+const CUSTOM_TAGS_KEY = "custom_tags";
 
-let selectedPriority = "Střední"; //výchozí priorita
+let selectedPriority = "Střední"; // výchozí priorita
 priorityButtons.forEach(button => {
     button.addEventListener("click", () => {
         priorityButtons.forEach(btn => btn.classList.remove("selected"));
@@ -15,11 +19,6 @@ priorityButtons.forEach(button => {
         button.classList.add("selected");
     });
 });
-
-const selectedTags = new Set();
-const tagsContainer = document.querySelector(".tags");
-const tagButtons = document.querySelectorAll(".tags button");
-const CUSTOM_TAGS_KEY = "custom_tags";
 
 function toggleTagSelection(button) {
     const tag = button.textContent;
@@ -73,7 +72,8 @@ function loadCustomTags() {
             tagsContainer.appendChild(btn);
         });
     } catch {
-        // ignore invalid storage
+        // kdyby JSON šel špatně, appka nespadne
+        console.error("Chyba při načítání vlastních štítků");
     }
 }
 

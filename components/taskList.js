@@ -5,6 +5,25 @@ import { Roles } from "../js/roles.js";
 const manager = new TaskManager();
 const tbody = document.getElementById("taskTableBody");
 let role = getCurrentRole();
+const statusFilter = document.getElementById("statusFilter");
+const priorityFilter = document.getElementById("priorityFilter");
+const searchInput = document.getElementById("taskSearch");
+
+if (statusFilter) { 
+    statusFilter.addEventListener("change", () => {
+        renderTaskList();
+    });
+}
+
+if (priorityFilter) {
+    priorityFilter.addEventListener("change", () => {
+        renderTaskList();
+    });
+}
+
+if (searchInput) {
+    searchInput.addEventListener("input", renderTaskList);
+}
 
 // Refresh seznam když se změní role
 const roleSelect = document.getElementById("roleSelect");
@@ -18,7 +37,24 @@ if (roleSelect) {
 renderTaskList();
 
 function renderTaskList() {
-    const tasks = manager.tasks;
+    let tasks = manager.tasks;
+    
+    // Filtrování podle statusu
+    if (statusFilter && statusFilter.value !== "") {
+        tasks = tasks.filter(task => task.status === statusFilter.value);
+    }
+    
+    // Filtrování podle priority
+    if (priorityFilter && priorityFilter.value !== "") {
+        tasks = tasks.filter(task => task.priority === priorityFilter.value);
+    }
+    
+    // Filtrování podle vyhledávacího dotazu
+    if (searchInput && searchInput.value.trim() !== "") {
+        const query = searchInput.value.toLowerCase();
+        tasks = tasks.filter(task => task.title.toLowerCase().includes(query));
+    }
+
     tbody.innerHTML = "";
 
     if (tasks.length === 0) {
@@ -51,8 +87,8 @@ function renderTaskList() {
         const actionsDiv = document.createElement("div");
         actionsDiv.classList.add("task-actions");
 
-        // ZADAVATEL – označit jako revizi
-        if (role === Roles.ZADAVATEL && task.status !== "ARCHIVOVANÝ") {
+        // ZADAVATEL – označit jako revizi (jen pro nové úkoly)
+        if (role === Roles.ZADAVATEL && task.status === "NOVÝ") {
             const reviseBtn = document.createElement("button");
             reviseBtn.textContent = "Revize";
             reviseBtn.classList.add("btn", "btn-warning", "btn-sm");
